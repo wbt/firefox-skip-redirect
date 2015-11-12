@@ -26,20 +26,17 @@ function listener(event) {
         return;
     }
 
-    console.log("Redirect " + original + " to " + redirectTarget);
     ui.indicateSkip(original, redirectTarget);
     subject.redirectTo(utils.makeURI(redirectTarget));
 }
 
 exports.main = function(options) {
-    console.log("Starting up with reason ", options.loadReason);
 
     ui.makeButton();
     events.on("http-on-opening-request", listener);
 };
 
 exports.onUnload = function(reason) {
-    console.log("Closing down with reason ", reason);
 
     events.off("http-on-opening-request", listener);
     ui.destroyButton();
